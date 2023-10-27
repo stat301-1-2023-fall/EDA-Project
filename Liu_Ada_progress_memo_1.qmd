@@ -36,18 +36,76 @@ GitHub (free account) cannot store large files. If you try to commit and push a 
 
 I plan to do my EDA project using the Global Terrorism Database (GTD) from Kaggle. This database is an open source database that has information on terrorist attacks worldwide from 1970 to 2017 and is maintained by the National Consortium for the Study of Terrorism and Responses to Terrorism at The University of Maryland. The database can be found at https://www.kaggle.com/datasets/START-UMD/gtd/ .
 
+I also plan to use the  Polity IV dataset which is typically maintained by the Center for Systemic Peace (CSP). This dataset includes information on the world's political regimes.It assesses aspects like democracy, autocracy, and political stability. It provides numerical scores to categorize political regimes.
+This dataset can be found at https://www.systemicpeace.org/polityproject.html
+
+Citation:
+Kaggle. "Global Terrorism Database (GTD)." Kaggle, https://www.kaggle.com/datasets/START-UMD/gtd/.
+
+"Polity Project." Center for Systemic Peace, https://www.systemicpeace.org/polityproject.html.
+
+
 ## Why this data
 
-Blah blah blah^[another footnote]
+These two datasets work well together to analyze the connections between the occurrence of terrorist attacks, weaponry, and different political regimes- these two datasets can be used to assess how the political environment influences terrorism trends. As someone with enlisted friends and family who have worked in defense and for the military, I find this topic very interesting especially during a time when political tensions are extremely high and terrorist threats are a common topic in everyday news broadcasts. Since these two are obviously correlated, I want to analyze how and to what extent they influence each other.
+
+I am also very interested in seeing how data science can be applied to government work and politics since I have been interested in working for the government in the defense and security fields. I also think it would be interesting to includes politics, a topic that isn't 100% straightforward facts and numbers, into a data science project. This would leave a lot of results up to policy ("What would be best?"... "What policy changes would you reccomend") I feel like the analysis from using these two data sets could theoretically both be applied politically- governments can use it to restructure and decrease instability-and in defense - the military and department of homeland security could use the trends found to prepare responses to attacks and understand who is high risk to attack.
 
 ## Data quality & complexity check
 
-Blah blah blah
+I chose both of these datasets very carefully and had high criteria for both of them to meet. Both of them are maintained by official groups and are backed up by accredited . They both organizations and have been widely used for research and are very comprehensive in their respected topics. 
+
+Both of these datasets have a great variety of variables to choose from for my analysis.
+The GTD dataset has 135 variables with 181,691 observations. There are 55 categorical variables and 75 numeric variables. There are some variables that a lot fo countries are missing, but there are also a lot that almost to none are missing. Due to this, I will be doing my analysis only using variables that almost all or all countries have.
+
+The Polity dataset has 37 variables and 17,574 observations. There are 2 categorical variables and 35 numeric variables.There are some variables that a lot fo countries are missing, but there are also a lot that almost to none are missing. Due to this, I will be doing my analysis only using variables that almost all or all countries have.
+
+```{r}
+library(tidyverse)
+library(naniar)
+library(haven)
+```
+terroism
+```{r}
+terroism_data <- read_csv("data/globalterrorismdb_0718dist.csv")
+glimpse(terroism_data)
+```
+```{r}
+num_cat <- sum(sapply(terroism_data, is.factor) | sapply(terroism_data, is.character))
+num_num <- sum(sapply(terroism_data, is.numeric))
+print(num_cat)
+print(num_num)
+```
+```{r}
+vis_miss(terroism_data, warn_large_data = FALSE)
+```
+polity
+```{r}
+polity_data <- read_sav("data/p5v2018.sav")
+glimpse(polity_data)
+```
+```{r}
+num_cat <- sum(sapply(polity_data, is.factor) | sapply(polity_data, is.character))
+num_num <- sum(sapply(polity_data, is.numeric))
+print(num_cat)
+print(num_num)
+```
+```{r}
+vis_miss(polity_data, warn_large_data = FALSE)
+```
+
+
+
+
 
 ## Potential data issues
 
-Blah blah blah
+A potential issue with my datasets is having to merge them to run analysis on the two. This would lead to me possibly having to create a new dataset that consists only of the variables I am using in my EDA due to the sheer size of both the datasets. I do not have a set method of matching them, but since they are both catalouged with year and country, I believe that would work well.
+
+Another issue is the size of the datasets- they are both very large and contain a lot of variables which would make it difficult to choose which ones to use. This would also mean I would have to add them to the gitignore file.
+
+One last issue is that the dataset from the Polity source is a .sav file rather than a csv or text file that I am familar working with. I have to install the haven package in order to read it.
 
 ## Misc
 
-Blah Blah
+The Polity source has several smaller different datasets that I may elect to also include if during my EDA, I discover that they contribute meaningfully to my analysis. There are some directly on terroism that I may include if I find that the GTD dataset doesn't encompass what I want to analyze during my research.
