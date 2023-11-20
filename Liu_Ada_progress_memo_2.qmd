@@ -1,0 +1,35 @@
+---
+title: "Progress Memo 2"
+subtitle: |
+  | Final Project 
+  | Data Science 1 with R (STAT 301-1)
+author: "Ada Liu"
+date: today
+
+format:
+  html:
+    toc: true
+    embed-resources: true
+    
+execute:
+  echo: false
+  warning: false
+
+from: markdown+emoji 
+---
+
+::: {.callout-tip icon=false}
+
+## Github Repo Link
+
+[https://github.com/stat301-1-2023-fall/final-project-1-adacliu.git](https://github.com/stat301-1-2023-fall/final-project-1-adacliu.git)
+
+:::
+
+```{r}
+## load packages ----
+library(tidyverse)
+library(naniar)
+library(haven)
+```
+

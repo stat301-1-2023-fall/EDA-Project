@@ -3,7 +3,7 @@ title: "Progress Memo 1"
 subtitle: |
   | Final Project 
   | Data Science 1 with R (STAT 301-1)
-author: "Ada"
+author: "Ada Liu"
 date: today
 
 format:
@@ -26,23 +26,18 @@ from: markdown+emoji
 
 :::
 
-::: {.callout-warning}
-GitHub (free account) cannot store large files. If you try to commit and push a large dataset you will have an ERROR! Any file over 100 MB (100,000 KB) needs to be added to the `.gitignore` file BEFORE committing.
-
-**We may need to do that for files in your final project!**
-:::
 
 ## Data source
 
-I plan to do my EDA project using the Global Terrorism Database (GTD) from Kaggle. This database is an open source database that has information on terrorist attacks worldwide from 1970 to 2017 and is maintained by the National Consortium for the Study of Terrorism and Responses to Terrorism at The University of Maryland. The database can be found at https://www.kaggle.com/datasets/START-UMD/gtd/ .
+I plan to do my EDA project using the Global Terrorism Database (GTD) from Kaggle. This database is an open source database that has information on terrorist attacks worldwide from 1970 to 2017 and is maintained by the National Consortium for the Study of Terrorism and Responses to Terrorism at The University of Maryland. The database can be found at [https://www.kaggle.com/datasets/START-UMD/gtd/](https://www.kaggle.com/datasets/START-UMD/gtd/ ) .
 
 I also plan to use the  Polity IV dataset which is typically maintained by the Center for Systemic Peace (CSP). This dataset includes information on the world's political regimes.It assesses aspects like democracy, autocracy, and political stability. It provides numerical scores to categorize political regimes.
-This dataset can be found at https://www.systemicpeace.org/polityproject.html
+This dataset can be found at [https://www.systemicpeace.org/polityproject.html](https://www.systemicpeace.org/polityproject.html)
 
 Citation:
-Kaggle. "Global Terrorism Database (GTD)." Kaggle, https://www.kaggle.com/datasets/START-UMD/gtd/.
+Kaggle. "Global Terrorism Database (GTD)." Kaggle, [https://www.kaggle.com/datasets/START-UMD/gtd/](https://www.kaggle.com/datasets/START-UMD/gtd/)
 
-"Polity Project." Center for Systemic Peace, https://www.systemicpeace.org/polityproject.html.
+"Polity Project." Center for Systemic Peace, [https://www.systemicpeace.org/polityproject.html](https://www.systemicpeace.org/polityproject.html.)
 
 
 ## Why this data
@@ -56,9 +51,9 @@ I am also very interested in seeing how data science can be applied to governmen
 I chose both of these datasets very carefully and had high criteria for both of them to meet. Both of them are maintained by official groups and are backed up by accredited . They both organizations and have been widely used for research and are very comprehensive in their respected topics. 
 
 Both of these datasets have a great variety of variables to choose from for my analysis.
-The GTD dataset has 135 variables with 181,691 observations. There are 55 categorical variables and 75 numeric variables. There are some variables that a lot fo countries are missing, but there are also a lot that almost to none are missing. Due to this, I will be doing my analysis only using variables that almost all or all countries have.
+The GTD dataset has 135 variables with 181,691 observations. There are 55 categorical variables and 75 numeric variables. There are some variables that a lot of countries are missing, but there are also a lot that almost to none are missing. Due to this, I will be doing my analysis only using variables that almost all or all countries have.
 
-The Polity dataset has 37 variables and 17,574 observations. There are 2 categorical variables and 35 numeric variables.There are some variables that a lot fo countries are missing, but there are also a lot that almost to none are missing. Due to this, I will be doing my analysis only using variables that almost all or all countries have.
+The Polity dataset has 37 variables and 17,574 observations. There are 2 categorical variables and 35 numeric variables.There are some variables that a lot of countries are missing, but there are also a lot that almost to none are missing. Due to this, I will be doing my analysis only using variables that almost all or all countries have.
 
 ```{r}
 library(tidyverse)
@@ -67,8 +62,7 @@ library(haven)
 ```
 terroism
 ```{r}
-terroism_data <- read_csv("data/globalterrorismdb_0718dist.csv")
-glimpse(terroism_data)
+terroism_data <- read_csv("data/raw/globalterrorismdb_0718dist.csv")
 ```
 ```{r}
 num_cat <- sum(sapply(terroism_data, is.factor) | sapply(terroism_data, is.character))
@@ -81,8 +75,7 @@ vis_miss(terroism_data, warn_large_data = FALSE)
 ```
 polity
 ```{r}
-polity_data <- read_sav("data/p5v2018.sav")
-glimpse(polity_data)
+polity_data <- read_sav("data/raw/p5v2018.sav")
 ```
 ```{r}
 num_cat <- sum(sapply(polity_data, is.factor) | sapply(polity_data, is.character))
