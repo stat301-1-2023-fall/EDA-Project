@@ -20,4 +20,4 @@ terrorism_data <- terrorism_data |>
 
 polity_data <- polity_data |>
   select(-all_of(polity_drop))
-
+  
