@@ -11,7 +11,7 @@ polity_data <- read_sav("data/raw/p5v2018.sav")
 missing_percentages_terrorism <- colSums(is.na(terrorism_data)) / nrow(terrorism_data) * 100
 missing_percentages_polity <- colSums(is.na(polity_data)) / nrow(polity_data) * 100
 
-#dropping columns that consists of 50% or more missing values
+#dropping columns that consists of 20% or more missing values
 terrorism_drop <- names(missing_percentages_terrorism[missing_percentages_terrorism > 50])
 polity_drop <- names(missing_percentages_polity[missing_percentages_polity > 50])
 
@@ -50,11 +50,17 @@ polity_data <- polity_data |>
 glimpse(polity_data)
 glimpse(terrorism_data)
 
-vis_miss(terrorism_data, warn_large_data = FALSE)
-vis_miss(polity_data, warn_large_data = FALSE)
+#joining the datasets by year and name of country 
+terrorism_data <- terrorism_data |>
+  mutate(country_name = country_txt)
+polity_data <- polity_data |>
+  mutate(country_name = country)
 
-#joining the datasets by year and ccode/ scode
+combined_data <- terrorism_data |>
+  inner_join(polity_data, join_by(year, country_name), relationship =
+               "many-to-many") 
 
+vis_miss(combined_data, warn_large_data = FALSE)
 
 #creating a package with my combined dataset with variable descriptions 
 install.packages("roxygen2")
