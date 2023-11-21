@@ -21,3 +21,24 @@ terrorism_data <- terrorism_data |>
 polity_data <- polity_data |>
   select(-all_of(polity_drop))
   
+#adding a new date column 
+terrorism_data <- terroism_data |>
+  mutate(date = as.Date(paste(iyear, imonth, iday, sep = "-"))) |>
+  select(date, everything())
+
+#dropping any entries that have a year prior to 1776 (earliest year in the polity dataset)
+terrorism_data <- terroism_data |>
+  filter(iyear > 1775)
+#dropping any entries after 2017 (last year of data in the terrorism set)
+polity_data <- polity_data |>
+  filter(year < 2018)
+
+#changing the column names to match
+terroism_data <- terroism_data |>
+  mutate(year = iyear,
+         month = imonth,
+         day = iday) |>
+  select(date, year, month, day, everything())
+
+
+#incorporating the region variable into the polity dataset
