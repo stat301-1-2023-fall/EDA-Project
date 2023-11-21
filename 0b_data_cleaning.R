@@ -20,25 +20,46 @@ terrorism_data <- terrorism_data |>
 
 polity_data <- polity_data |>
   select(-all_of(polity_drop))
-  
+
+#terrorism dataset
+
 #adding a new date column 
-terrorism_data <- terroism_data |>
+terrorism_data <- terrorism_data |>
   mutate(date = as.Date(paste(iyear, imonth, iday, sep = "-"))) |>
   select(date, everything())
-
 #dropping any entries that have a year prior to 1776 (earliest year in the polity dataset)
-terrorism_data <- terroism_data |>
+terrorism_data <- terrorism_data |>
   filter(iyear > 1775)
+#dropping any events that had an unknown country of occurence
+terrorism_data <- terrorism_data |>
+  filter(!is.na(country_txt))
+#changing the column names to match
+terrorism_data <- terrorism_data |>
+  mutate(year = iyear,
+         month = imonth,
+         day = iday) |>
+  select(date, year, month, day, everything()) |>
+  select(-iyear, -imonth, -iday)
+
+
+#cleaning the polity dataset 
 #dropping any entries after 2017 (last year of data in the terrorism set)
 polity_data <- polity_data |>
   filter(year < 2018)
 
-#changing the column names to match
-terroism_data <- terroism_data |>
-  mutate(year = iyear,
-         month = imonth,
-         day = iday) |>
-  select(date, year, month, day, everything())
+glimpse(polity_data)
+glimpse(terrorism_data)
+
+vis_miss(terrorism_data, warn_large_data = FALSE)
+vis_miss(polity_data, warn_large_data = FALSE)
+
+#joining the datasets by year and ccode/ scode
 
 
-#incorporating the region variable into the polity dataset
+#creating a package with my combined dataset with variable descriptions 
+install.packages("roxygen2")
+library(roxygen2)
+install.packages("usethis")
+usethis::create_package(data)
+save(my_dataset, file = "data/combined_data.RData")
+
