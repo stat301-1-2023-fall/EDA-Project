@@ -1,0 +1,236 @@
+Variables, Meaning
+
+year - the year in which the incident occurred. In the case of incident(s) occurring over an
+extended period, the field will record the year when the incident was initiated
+
+month -  the number of the month in which the incident occurred. In the case of incident(s)
+occurring over an extended period, the field will record the month when the incident was initiated
+
+day - the numeric day of the month on which the incident occurred. In the case of
+incident(s) occurring over an extended period, the field will record the day when the incident was initiated
+
+extended - 1 = "Yes" The duration of an incident extended more than 24 hours.
+0 = "No" The duration of an incident extended less than 24 hours.
+
+region_txt - This field identifies the region in which the incident occurred.
+
+provstate - This variable records the name (at the time of event) of the 1 st order subnational administrative region in which the event occurs.
+
+city - This field contains the name of the city, village, or town in which the incident occurred. If the city, village, or town for an incident is unknown, then this field contains the smallest administrative area below provstate which can be found for the incident (e.g., district).  
+
+crit1 - The violent act must be aimed at attaining a political, economic, religious, or social goal.This criterion is not satisfied in those cases where the perpetrator(s) acted out of a pure profit motive or from an idiosyncratic personal motive unconnected with broader
+societal change.
+1 = "Yes" The incident meets Criterion 1.
+0 = "No" The incident does not meet Criterion 1 or there is no indication that the
+incident meets Criterion 1.
+
+crit2 - To satisfy this criterion there must be evidence of an intention to coerce, intimidate, or convey some other message to a larger audience (or audiences) than the immediate victims. Such evidence can include (but is not limited to) the following: pre- or post- attack statements by the perpetrator(s), past behavior by the perpetrators, or the
+particular nature of the target/victim, weapon, or attack type.
+1 = "Yes" The incident meets Criterion 2.
+0 = "No" The incident does not meet Criterion 2 or no indication
+
+crit3 - The action is outside the context of legitimate warfare activities, insofar as it targets non-combatants (i.e. the act must be outside the parameters permitted by international humanitarian law as reflected in the Additional Protocol to the Geneva Conventions of 12 August 1949 and elsewhere).
+1 = "Yes" The incident meets Criterion 3.
+0 = "No" The incident does not meet Criterion 3.
+
+doubtterr - In certain cases there may be some uncertainty whether an incident meets all of the criteria for inclusion. In these ambiguous cases, where there is a strong possibility, but not certainty, that an incident represents an act of terrorism, the incident is included in GTD and is coded as “Yes” for this variable.
+1 = "Yes" There is doubt as to whether the incident is an act of terrorism.
+0 = "No" There is essentially no doubt as to whether the incident is an act of
+terrorism.
+
+multiple - In those cases where several attacks are connected, but where the various actions do not constitute a single incident (either the time of occurrence of incidents or their locations are discontinuous – see Single Incident Determination section above), then “Yes” is selected to denote that the particular attack was part of a “multiple” incident.
+1 = "Yes" The attack is part of a multiple incident.
+0 = "No" The attack is not part of a multiple incident.
+
+success - Success of a terrorist strike is defined according to the tangible effects of the attack. Success is not judged in terms of the larger goals of the perpetrators. 
+The definition of a successful attack depends on the type of attack. Essentially, the key question is whether or not the attack type took place. If a case has multiple attack types, it is successful if any of the attack types are successful, with the exception of assassinations, which are only successful if the intended target is killed.
+1 = "Yes" The incident was successful.
+0 = "No" The incident was not successful.
+
+suicide - This variable is coded “Yes” in those cases where there is evidence that the perpetrator did not intend to escape from the attack alive.
+1 = "Yes" The incident was a suicide attack.
+0 = "No" There is no indication that the incident was a suicide attack
+
+attacktype1_txt - This field captures the general method of attack and often reflects the broad class of tactics used.
+
+targtype1_txt -   The target/victim type field captures the general type of target/victim. 
+
+targsubtype1_txt - The target subtype variable captures the more specific target category and provides the next level of designation for each target type. 
+
+target1 - This is the specific person, building, installation, etc., that was targeted and/or victimized 
+
+natlty1_txt - This is the nationality of the target that was attacked, and is not necessarily the same as the country in which the incident occurred, although in most cases it is. For hijacking incidents, the nationality of the plane is recorded and not that of the passengers.
+
+gname - This field contains the name of the group that carried out the attack.
+
+guncertain1 - This variable indicates whether or not the information reported by sources about the Perpetrator Group Name(s) is based on speculation or dubious claims of responsibility.
+1 = "Yes" The perpetrator attribution(s) for the incident are suspected.
+0 = "No" The perpetrator attribution(s) for the incident are not suspected.
+
+individual - This variable indicates whether or not the attack was carried out by an individual or several individuals not known to be affiliated with a group or organization. This information should be interpreted with caution, because it is likely that assailants who might be characterized as “unaffiliated individuals” are frequently unidentified.
+1 = "Yes" The perpetrator(s) were identified by name (or specific unnamed minors)
+and not known to be affiliated with a group or organization.
+0 = "No" The perpetrator(s) were not identified as unaffiliated individuals (i.e. the
+perpetrators were either not identified by name, or were known to be
+affiliated with a group or organization).
+
+weaptype1_txt - Up to four weapon types are recorded for each incident. This field records the general type of weapon used in the incident.
+
+nkill - This field stores the number of total confirmed fatalities for the incident. The number includes all victims and attackers who died as a direct result of the incident.
+
+nwound - This field records the number of confirmed non-fatal injuries to both perpetrators and victims.
+
+property - “Yes” appears if there is evidence of property damage from the incident.
+1 = "Yes" The incident resulted in property damage.
+0 = "No" The incident did not result in property damage.
+
+ishostkid - This field records whether or not the victims were taken hostage (i.e. held against their will) or kidnapped (i.e. held against their will and taken to another location) during an incident.
+1 = "Yes" The victims were taken hostage or kidnapped.
+0 = "No" The victims were not taken hostage or kidnapped.
+
+INT_LOG - 1 = "Yes" The attack was logistically international; the nationality of the
+perpetrator group differs from the location of the attack. If the
+perpetrator group is multinational, the attack is logistically international
+if all of the group’s nationalities differ from the location of the attack.
+0 = "No" The attack was logistically domestic; the nationality of the perpetrator
+group is the same as the location of the attack. If the perpetrator group is
+multinational, the attack is logistically domestic if any of the group’s
+nationalities is the same as the location of the attack.
+
+INT_IDEO - 1 = "Yes" The attack was ideologically international; the nationality of the
+perpetrator group differs from the nationality of the target(s)/victim(s). If
+the perpetrator group or target is multinational, the attack is ideologically
+international.
+0 = "No" The attack was ideologically domestic; any and all nationalities of the
+perpetrator group are the same as the nationalities of the
+target(s)/victim(s).
+
+country_name - This field identifies the country or location where the incident occurred. Separatist regions, such as Kashmir, Chechnya, South Ossetia, Transnistria, or Republic of Cabinda, are coded as part of the “home” country
+
+democ - The Democracy index is an additive eleven-point scale (0-10).
+Authority Coding Scale Weight
+Competitiveness of Executive Recruitment (XRCOMP):
+(3) Election +2
+(2) Transitional +1
+Openness of Executive Recruitment (XROPEN):
+only if XRCOMP is Election (3) or Transitional (2)
+(3) Dual/election +1
+(4) Election +1
+Constraint on Chief Executive (XCONST):
+(7) Executive parity or subordination +4
+(6) Intermediate category +3
+(5) Substantial limitations +2
+(4) Intermediate category +1
+Competitiveness of Political Participation (PARCOMP):
+(5) Competitive +3
+(4) Transitional +2
+(3) Factional +1
+
+autoc - An eleven-point Autocracy scale is constructed additively.
+Authority Coding Scale Weight
+Competitiveness of Executive Recruitment (XRCOMP):
+(1) Selection +2
+Openness of Executive Recruitment (XROPEN):
+only if XRCOMP is coded Selection (1)
+(1) Closed +1
+(2) Dual/designation +1
+Constraints on Chief Executive (XCONST):
+(1) Unlimited authority +3
+(2) Intermediate category +2
+(3) Slight to moderate limitations +1
+Regulation of participation (PARREG):
+(4) Restricted +2
+(3) Sectarian +1
+Competitiveness of Participation (PARCOMP):
+(1) Repressed +2
+(2) Suppressed +1
+
+polity - The POLITY score is computed by subtracting the AUTOC score from the
+DEMOC score; the resulting unified polity scale ranges from +10 (strongly democratic) to !10
+(strongly autocratic). 
+
+durable - Regime Durability: The number of years since the most recent regime change (defined by a three- point change in the POLITY score over a period of three years or less) or the end of transition period defined by the lack of stable political institutions (denoted by a standardized authority score).
+
+xrreg - Regulation of Chief Executive Recruitment
+(1) Unregulated: Changes in chief executive occur through forceful seizures of power. 
+(2) Designational/Transitional: Chief executives are chosen by designation within the
+political elite, without formal competition (i.e., one-party systems or "rigged" multiparty
+elections)
+(3) Regulated: Chief executives are determined by hereditary succession or in competitive
+elections. Ascriptive/designative and ascriptive/elective selections (i.e., an effective king and premier) are also coded as regulated. 
+
+xrcomp - Competitiveness of Executive Recruitment
+(1) Selection: Chief executives are determined by hereditary succession, designation, or by
+a combination of both, as in monarchies whose chief minister is chosen by king or court.
+(2) Dual/Transitional: Dual executives in which one is chosen by hereditary succession, the
+other by competitive election. 
+(3) Election: Chief executives are typically chosen in or through competitive elections
+matching two or more major parties or candidates.
+
+xropen - Openness of Executive Recruitment
+(1) Closed: Chief executives are determined by hereditary succession, e.g. kings, emperors,
+beys, emirs, etc. who assume executive powers by right of descent. 
+(2) Dual Executive–Designation: Hereditary succession plus executive or court selection of
+an effective chief minister.
+(3) Dual Executive–Election: Hereditary succession plus electoral selection of an effective
+chief minister.
+(4) Open: Chief executives are chosen by elite designation, competitive election, or
+transitional arrangements between designation and election.
+
+xconst - Executive Constraints (Decision Rules). Operationally, this variable refers to the extent of institutionalized constraints on the decision- making powers of chief executives, whether individuals or collectivities.
+(1) Unlimited Authority: There are no regular limitations on the executive's actions (as
+distinct from irregular limitations such as the threat or actuality of coups and
+assassinations). 
+(2) Intermediate Category
+(3) Slight to Moderate Limitation on Executive Authority: There are some real but limited
+restraints on the executive.
+(4) Intermediate Category
+(5) Substantial Limitations on Executive Authority: The executive has more effective
+authority than any accountability group but is subject to substantial constraints by them.
+(6) Intermediate Category
+(7) Executive Parity or Subordination: Accountability groups have effective authority equal
+to or greater than the executive in most areas of activity. )
+
+parreg - Regulation of Participation: Participation is regulated to the extent that there are binding rules on when, whether, and how political preferences are expressed. 
+(1) Unregulated: Political participation is fluid; there are no enduring national political
+organizations and no systematic regime controls on political activity.
+(2) Multiple Identity: There are relatively stable and enduring political groups which compete
+for political influence at the national level–parties, regional groups, or ethnic groups, not
+necessarily elected–but there are few, recognized overlapping (common) interests.
+(3) Sectarian: Political demands are characterized by incompatible interests and
+intransigent posturing among multiple identity groups and oscillate more or less regularly
+between intense factionalism and government favoritism, that is, when one identity group
+secures central power it favors group members in central allocations and restricts
+competing groups' political activities, until it is displaced in turn).
+(4) Restricted: Some organized political participation is permitted without intense
+factionalism but significant groups, issues, and/or types of conventional participation are
+regularly excluded from the political process.
+(5) Regulated: Relatively stable and enduring political groups regularly compete for political
+influence and positions with little use of coercion. 
+
+parcomp - The Competitiveness of Participation: The competitiveness of participation refers to the extent to which alternative preferences for policy and leadership can be pursued in the political arena.
+(0) Not Applicable: This is used for polities that are coded as Unregulated, or moving /from
+that position, in Regulation of Political Participation (variable 2.6).
+(1) Repressed: No significant oppositional activity is permitted outside the ranks of the
+regime and ruling party. Totalitarian party systems, authoritarian military dictatorships, and despotic monarchies are typically coded here.
+(2) Suppressed: Some organized, political competition occurs outside government, without
+serious factionalism; but the regime systematically and sharply limits its form, extent, or both in ways that exclude substantial groups (20% or more of the adult population) from
+participation. 
+(3) Factional: Polities with parochial or ethnic-based political factions that regularly compete
+for political influence in order to promote particularist agendas and favor group members
+to the detriment of common, secular, or cross-cutting agendas.
+(4) Transitional: Any transitional arrangement from Restricted, Suppressed, or Factional
+patterns to fully Competitive patterns, or vice versa. Transitional arrangements are
+accommodative of competing, parochial interests but have not fully linked parochial with
+broader, general interests. Sectarian and secular interest groups coexist.
+(5) Competitive: There are relatively stable and enduring, secular political groups which
+regularly compete for political influence at the national level; ruling groups and coalitions
+regularly, voluntarily transfer central power to competing groups.
+
+exrec - Executive Recruitment: Concept variable combines information presented in three component variables: XRREG, XRCOMP, and XROPEN
+
+exconst - Executive Constraints: Concept variable is identical to XCONST
+
+polcomp - Political Competition: Concept variable combines information presented in two component variables: PARREG and PARCOMP    
+
+ 

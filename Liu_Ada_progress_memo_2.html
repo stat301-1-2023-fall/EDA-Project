@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Ada Liu">
-<meta name="dcterms.date" content="2023-11-19">
+<meta name="dcterms.date" content="2023-11-22">
 
 <title>Progress Memo 2</title>
 <style>
@@ -3012,7 +3012,7 @@ Data Science 1 with R (STAT 301-1)</p><p></p>
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 19, 2023</p>
+      <p class="date">November 22, 2023</p>
     </div>
   </div>
   
@@ -3033,6 +3033,32 @@ Github Repo Link
 </div>
 <div class="callout-body-container callout-body">
 <p><a href="https://github.com/stat301-1-2023-fall/final-project-1-adacliu.git">https://github.com/stat301-1-2023-fall/final-project-1-adacliu.git</a></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Data Collecting and Cleaning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For my EDA, I decided on using only the two datasets I mentioned in my first progress meme, the Global Terrorism Database and the Polity IV dataset as I found them comprehensive and included a variety of variables. I did my data cleaning in my 0b_data_cleaning .R file, which included removing variables from both datasets that had huge missingness issue, in my case, over 50% missing. Since the earliest entry in the Polity dataset was 1776 and the latest entry in the GTD was 2017, I dropped any entries prior to 1776 from the GTD dataset and any entries after 2017 in the Polity dataset. Further, I changed some of the column names (ie, “country_txt” to “country_name”) in the datasets to facilitate merging. I used the compound key “country_name” and “year” from the Polity dataset to join the two datasets and then cleaned up this new, combined dataset by removing any variables that I was not interested in working with and changed unknwon values to “NA”. I decided to keep 49 variables in my final dataset, giving me a wide variety of variables to work with and explore. Finally, I documented the final dataset by creating a package dataset.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Univariate Analysis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
 </div>
 </div>
 

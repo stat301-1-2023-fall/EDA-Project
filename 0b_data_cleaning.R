@@ -2,6 +2,8 @@
 library(tidyverse)
 library(naniar)
 library(haven)
+install.packages("readr")
+library(readr)
 
 #importing data
 terrorism_data <- read_csv("data/raw/globalterrorismdb_0718dist.csv")
@@ -56,30 +58,27 @@ polity_data <- polity_data |>
 combined_data <- terrorism_data |>
   inner_join(polity_data, join_by(year, country_name), relationship =
                "many-to-many") 
-combined_data <- combined_data |>
-  select(-country_txt, - country.y)
 
 #removing repeated and unneeded variables
 combined_data <- combined_data |>
-  select(-eventid, -cyear, -country.x, -ccode, -scode, , -latitude, -longitude, -vicinity,
+  select(-country_txt, - country.y,
+         -eventid, -cyear, -country.x, -ccode, -scode, , -latitude, -longitude, -vicinity,
          -dbsource,  -scite1, -specificity, -weapsubtype1_txt,-weapdetail, -summary, 
-         -nkillter, -nkillus, -nwoundus, -nwoundte, -claimed, corp1,
-         -nperps,-nperpcap)
+         -nkillter, -nkillus, -nwoundus, -nwoundte, -claimed, -corp1,
+         -nperps,-nperpcap, -INT_MISC, -INT_ANY, -p5, -flag, -polity2)
 
 #creating a dataset that is text based
 combined_data <- combined_data |>
-  select(-region, -attacktype1, -targtype1, -targsubtype1, -natlty1, -weaptype1, -weapsubtype1)
-
-combined_data |>
-  select(date, region_txt, country_name, provstate, city, everything()) |>
-  arrange(date)
-
+  select(-date, -region, -attacktype1, -targtype1, -targsubtype1, -natlty1, -weaptype1, -weapsubtype1)
 
 #changing all unknown values to NA
 combined_data$ishostkid[combined_data$ishostkid == -9] <- NA
 combined_data$day[combined_data$day == 0] <- NA
 combined_data$month[combined_data$month == 0] <- NA
 combined_data$doubtterr[combined_data$doubtterr == -9] <- NA
+combined_data$property[combined_data$property == -9] <- NA
+combined_data$INT_LOG[combined_data$INT_LOG == -9] <- NA
+combined_data$INT_IDEO[combined_data$INT_IDEO == -9] <- NA
 
 
 #looking at and cleaning missingness
@@ -88,15 +87,7 @@ vis_miss(combined_data, warn_large_data = FALSE)
 missing_summary <- miss_var_summary(combined_data)
 missing_summary
 
-glimpse(combined_data)
+#writing dataet into the data file 
+write_csv(combined_data, "data/eda_data.csv")
 
-
-
-
-#creating a package with my combined dataset with variable descriptions 
-install.packages("roxygen2")
-library(roxygen2)
-install.packages("usethis")
-usethis::create_package(data)
-save(my_dataset, file = "data/eda_data.RData")
 

@@ -26,10 +26,16 @@ from: markdown+emoji
 
 :::
 
-```{r}
-## load packages ----
-library(tidyverse)
-library(naniar)
-library(haven)
-``` 
+::: {.callout-tip icon="false"}
+## Data Collecting and Cleaning
+
+For my EDA, I decided on using only the two datasets I mentioned in my first progress meme, the Global Terrorism Database and the Polity IV dataset as I found them comprehensive and included a variety of variables. I did my data cleaning in my 0b_data_cleaning .R file, which included removing variables from both datasets that had huge missingness issue, in my case, over 50% missing. Since the earliest entry in the Polity dataset was 1776 and the latest entry in the GTD was 2017, I dropped any entries prior to 1776 from the GTD dataset and any entries after 2017 in the Polity dataset. Further, I changed some of the column names (ie, "country_txt" to "country_name") in the datasets to facilitate merging. I used the compound key "country_name" and "year" from the Polity dataset to join the two datasets and then cleaned up this new, combined dataset by removing any variables that I was not interested in working with and changed unknwon values to "NA". I decided to keep 43 variables in my final dataset, giving me a wide variety of variables to work with and explore.  Finally, I created text file codebook to document what each variable is. 
+ 
+:::
+
+::: {.callout-tip icon="false"}
+## Univariate Analysis
+
+ 
+:::
 
