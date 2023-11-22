@@ -88,23 +88,6 @@ ishostkid - This field records whether or not the victims were taken hostage (i.
 1 = "Yes" The victims were taken hostage or kidnapped.
 0 = "No" The victims were not taken hostage or kidnapped.
 
-INT_LOG - 1 = "Yes" The attack was logistically international; the nationality of the
-perpetrator group differs from the location of the attack. If the
-perpetrator group is multinational, the attack is logistically international
-if all of the group’s nationalities differ from the location of the attack.
-0 = "No" The attack was logistically domestic; the nationality of the perpetrator
-group is the same as the location of the attack. If the perpetrator group is
-multinational, the attack is logistically domestic if any of the group’s
-nationalities is the same as the location of the attack.
-
-INT_IDEO - 1 = "Yes" The attack was ideologically international; the nationality of the
-perpetrator group differs from the nationality of the target(s)/victim(s). If
-the perpetrator group or target is multinational, the attack is ideologically
-international.
-0 = "No" The attack was ideologically domestic; any and all nationalities of the
-perpetrator group are the same as the nationalities of the
-target(s)/victim(s).
-
 country_name - This field identifies the country or location where the incident occurred. Separatist regions, such as Kashmir, Chechnya, South Ossetia, Transnistria, or Republic of Cabinda, are coded as part of the “home” country
 
 democ - The Democracy index is an additive eleven-point scale (0-10).

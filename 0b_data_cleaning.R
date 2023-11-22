@@ -65,7 +65,7 @@ combined_data <- combined_data |>
          -eventid, -cyear, -country.x, -ccode, -scode, , -latitude, -longitude, -vicinity,
          -dbsource,  -scite1, -specificity, -weapsubtype1_txt,-weapdetail, -summary, 
          -nkillter, -nkillus, -nwoundus, -nwoundte, -claimed, -corp1,
-         -nperps,-nperpcap, -INT_MISC, -INT_ANY, -p5, -flag, -polity2)
+         -nperps,-nperpcap, -INT_MISC, -INT_ANY, -INT_LOG, - INT_IDEO -p5, -flag, -polity2)
 
 #creating a dataset that is text based
 combined_data <- combined_data |>
@@ -77,8 +77,6 @@ combined_data$day[combined_data$day == 0] <- NA
 combined_data$month[combined_data$month == 0] <- NA
 combined_data$doubtterr[combined_data$doubtterr == -9] <- NA
 combined_data$property[combined_data$property == -9] <- NA
-combined_data$INT_LOG[combined_data$INT_LOG == -9] <- NA
-combined_data$INT_IDEO[combined_data$INT_IDEO == -9] <- NA
 
 
 #looking at and cleaning missingness
@@ -86,6 +84,14 @@ vis_miss(combined_data, warn_large_data = FALSE)
 
 missing_summary <- miss_var_summary(combined_data)
 missing_summary
+
+#checking complexity
+num_cat <- sum(sapply(combined_data, is.factor) | sapply(combined_data, is.character))
+num_num <- sum(sapply(combined_data, is.numeric))
+print(num_cat)
+print(num_num)
+
+combined_data
 
 #writing dataet into the data file 
 write_csv(combined_data, "data/eda_data.csv")
