@@ -11,7 +11,7 @@ polity_data <- read_sav("data/raw/p5v2018.sav")
 missing_percentages_terrorism <- colSums(is.na(terrorism_data)) / nrow(terrorism_data) * 100
 missing_percentages_polity <- colSums(is.na(polity_data)) / nrow(polity_data) * 100
 
-#dropping columns that consists of 20% or more missing values
+#dropping columns that consists of 50% or more missing values
 terrorism_drop <- names(missing_percentages_terrorism[missing_percentages_terrorism > 50])
 polity_drop <- names(missing_percentages_polity[missing_percentages_polity > 50])
 
@@ -47,9 +47,6 @@ terrorism_data <- terrorism_data |>
 polity_data <- polity_data |>
   filter(year < 2018)
 
-glimpse(polity_data)
-glimpse(terrorism_data)
-
 #joining the datasets by year and name of country 
 terrorism_data <- terrorism_data |>
   mutate(country_name = country_txt)
@@ -59,13 +56,47 @@ polity_data <- polity_data |>
 combined_data <- terrorism_data |>
   inner_join(polity_data, join_by(year, country_name), relationship =
                "many-to-many") 
+combined_data <- combined_data |>
+  select(-country_txt, - country.y)
 
+#removing repeated and unneeded variables
+combined_data <- combined_data |>
+  select(-eventid, -cyear, -country.x, -ccode, -scode, , -latitude, -longitude, -vicinity,
+         -dbsource,  -scite1, -specificity, -weapsubtype1_txt,-weapdetail, -summary, 
+         -nkillter, -nkillus, -nwoundus, -nwoundte, -claimed, corp1,
+         -nperps,-nperpcap)
+
+#creating a dataset that is text based
+combined_data <- combined_data |>
+  select(-region, -attacktype1, -targtype1, -targsubtype1, -natlty1, -weaptype1, -weapsubtype1)
+
+combined_data |>
+  select(date, region_txt, country_name, provstate, city, everything()) |>
+  arrange(date)
+
+
+#changing all unknown values to NA
+combined_data$ishostkid[combined_data$ishostkid == -9] <- NA
+combined_data$day[combined_data$day == 0] <- NA
+combined_data$month[combined_data$month == 0] <- NA
+combined_data$doubtterr[combined_data$doubtterr == -9] <- NA
+
+
+#looking at and cleaning missingness
 vis_miss(combined_data, warn_large_data = FALSE)
+
+missing_summary <- miss_var_summary(combined_data)
+missing_summary
+
+glimpse(combined_data)
+
+
+
 
 #creating a package with my combined dataset with variable descriptions 
 install.packages("roxygen2")
 library(roxygen2)
 install.packages("usethis")
 usethis::create_package(data)
-save(my_dataset, file = "data/combined_data.RData")
+save(my_dataset, file = "data/eda_data.RData")
 
