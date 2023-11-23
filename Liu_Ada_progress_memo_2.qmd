@@ -28,22 +28,25 @@ from: markdown+emoji
 ```{r}
 #| echo: false
 library(tidyverse)
+library(knitr)
+library(maps)
+library(purrr)
 eda_data <- read_csv("data/eda_data.csv")
 ```
-
-
-::: {.callout-tip icon="false"}
 ## Data Collecting and Cleaning
 
 For my EDA, I decided on using only the two datasets I mentioned in my first progress meme, the Global Terrorism Database and the Polity IV dataset as I found them comprehensive and included a variety of variables. I did my data cleaning in my 0b_data_cleaning .R file, which included removing variables from both datasets that had huge missingness issue, in my case, over 50% missing. Since the earliest entry in the Polity dataset was 1776 and the latest entry in the GTD was 2017, I dropped any entries prior to 1776 from the GTD dataset and any entries after 2017 in the Polity dataset. Further, I changed some of the column names (ie, "country_txt" to "country_name") in the datasets to facilitate merging. I used the compound key "country_name" and "year" from the Polity dataset to join the two datasets and then cleaned up this new, combined dataset by removing any variables that I was not interested in working with and changed unknown values to "NA". I decided to keep 41 variables in my final dataset, giving me a wide variety of variables to work with and explore.  Finally, I created text file codebook to document what each variable is. 
  
-:::
 
-::: {.callout-tip icon="false"}
 ## Data overview and quality
 
 After I combined and cleaned my two raw datasets, the dataset I will be using for my EDA has 43 variables and very little missingness issues. There are 11 categorical variables and 30 numerical variables with 175,790 observations. 
-:::
+
+## General Overview of the Distribution of Terroist Attacks
+
+Terroist Attacks by Year
+
+How has the frequency of terrorist attacks changed from 1970 to 2017?
 ```{r}
 #| echo: false
 eda_data |>
@@ -52,23 +55,136 @@ eda_data |>
   labs(title = "Distribution of Terroist Attacks by Year",
        x = "Year", y = "Count")
 ```
+Looking at the histogram, the distribution of terroist attacks over time is skewed to the right, which means terroist attack have become more common as time passes. It is interesting to note that terroist attacks seem to have started decreasing after 1990 but increase drastically after 2001. 
 
-I found the data about weapons very interesting
+Terroist Attacks by Polity Score
+
+Are there more attacks if a country has a higher or a lower Polity score?
 
 ```{r}
 #| echo: false
 eda_data |>
-  filter(exrec > -11) |>
-  mutate(exrec = as.factor(exrec)) |>
-  ggplot(aes(x = exrec))+
-  geom_bar(fill = "hotpink") +
-  labs(title = "Distribution of Terroist Attacks by Executive Recruitment Score",
-       x = "Executive Recruitment Score", y = "Count")
+  filter(polity > -11) |>
+  mutate(polity = as.factor(polity)) |>
+  ggplot(aes(x = polity))+
+  geom_bar(fill = "darkblue") +
+  labs(title = "Distribution of Terroist Attacks by Polity Score",
+       x = "Polity Score", y = "Count")
+```
+This bar chart shows that most terroist attacks do not happen in countries with a very low or very high Polity score. Countries with Polity score of 6 have the most terrorist attacks in total. Since very developed countries tend to have a high polity score and very underdeveloped countries have a low polity score, these countries in the middle may be the ones that have several groups fighting for leadership and that don't have extremely advanced technology to defend themselves agaisnt attackers.
+
+Frequency of Terrorist Attacks by Country
+
+Where do most terrorist attacks occur?
+
+```{r}
+eda_data |>
+  group_by(region_txt) |>
+  summarise(n_attacks = n()) |>
+  kable("html", booktabs = TRUE) 
+```
+To visizualize the frequncy of terrorist attacks by country
+```{r}
+#| echo: false
+world_map <- map_data("world")
+
+unique_countries_eda_data <- unique(eda_data$country_name)
+unique_countries_world_map <- unique(world_map$region)
+
+countries_not_in_world_map <- setdiff(unique_countries_eda_data, unique_countries_world_map)
+
+country_mapping <- data.frame(
+  country_name = c("United States", "United Kingdom", "Czechoslovakia", "South Vietnam", "Slovak Republic"),
+  map_country_name = c("USA", "UK", "Czech Republic", "Vietnam", "Slovakia"))
+
+eda_data_corrected <- merge(eda_data, country_mapping, by = "country_name", all.x = TRUE)
+
+eda_data_corrected$map_country_name <- ifelse(is.na(eda_data_corrected$map_country_name),
+                                              eda_data_corrected$country_name, 
+                                              eda_data_corrected$map_country_name)
+
+df_frequency <- eda_data_corrected |>
+  count(map_country_name)
+
+df_mapped <- merge(world_map, df_frequency, by.x = "region", by.y = "map_country_name", all.x = TRUE)
+world_map <- map_data("world")
+
+ggplot(df_mapped, aes(x = long, y = lat, group = group, fill = n)) +
+  geom_polygon()+
+  labs(fill = "Number of Attacks", title = "Frequency of Terrorist Attacks by Country")
+```
+Looking at the number of terrorist attacks by region and by country, it is evident that Middle Eastern countries and South Asian countries have a much higher attacked rate. This may be due to the fact that many countries in these areas have unstable political regimes and have several groups fighting for control of the government.
+
+
+## Exploring Attack Success vs. Political Stability
+
+How does the political stability of a country, marked by its durability and polity scores, affect how likely a terrorist attack will be successful?
+
+Basic overview of the distribution of successful and unsuccessful attacks
+```{r}
+table(eda_data$success) |>
+  kable("html", booktabs = TRUE) 
+eda_data |>
+  ggplot(aes(x = success))+
+  geom_bar(fill = "skyblue")+
+  labs(title = "Count of Successful and Unsuccesful Terrorist Attacks")
+```
+There are many more unsuccessful attacks than there are succesful ones.
+
+Comparing the mean values of durable and Polity score for successful and unsuccessful attacks. This will give an idea of whether there is a noticeable difference in political stability factors based on the success of the attacks
+```{r}
+eda_data |>
+  filter(polity > -11) |>
+  group_by(success) |>
+  summarise(
+    avg_durable = mean(durable, na.rm = TRUE),
+    avg_polity = mean(polity, na.rm = TRUE)
+  ) |>
+  kable("html", booktabs = TRUE) 
+```
+Visualizing the distribution of durable and Polity score across successful and unsuccessful attacks
+```{r}
+ggplot(eda_data, aes(x = as.factor(success), y = durable)) +
+  geom_boxplot() +
+  coord_flip()+
+  labs(title = "Regime Durability by Success of Attacks", x = "Success", y = "Regime Durability")
+```
+```{r}
+eda_data |>
+  filter(polity > -11) |>
+ggplot(aes(x = as.factor(success), y = polity)) +
+  geom_boxplot() +
+  coord_flip()+
+  labs(title = "Polity Score by Success of Attacks", x = "Success", y = "Polity Score")
+```
+For attacks that are successful, the average durability of the country is lower for attacks that are unsuccesful.A country is more durable the longer it has been since a regime change which mean more durable countries are likely to have better infrastructure and communication through the country. This means they are better prepared to predict attacks, handle attacks, and send out first responders when needed. Successful attacks occur on average in a country with a lower Polity score. Since countries that have a higher Polity score are more democratic, the policies and authority in these countries tend to focus on protecting the public and civilians more than in autocratic governments.
+
+
+How do polity score and durable score together influence the success of an attack?
+```{r}
+eda_data_filtered <- eda_data %>% 
+  filter(polity > -11) |>
+  filter(!is.na(success), !is.na(polity), !is.na(durable))
+
+model <- glm(success ~ polity + durable, data = eda_data_filtered, family = "binomial")
+
+eda_data_filtered$predicted_success <- predict(model, type = "response")
+
+eda_data_filtered$success_group <- cut(eda_data_filtered$predicted_success, 
+                              breaks = seq(0.75, 0.95, by = 0.02), 
+                              include.lowest = TRUE)
+  
+ggplot(eda_data_filtered, aes(x = polity, y = durable, color = as.factor(success_group))) +
+  geom_point(alpha = 0.5) +
+  labs(title = "Predicted Probability of Success of a Terroist Attack by Polity Score and Durable Score", x = "Polity Score", y = "Durable Score")
 ```
 
 
 
+## Exploring Severity of Terroist Attacks by Weapon Type
+Severity can be defined as rate of success and number of people killed and wounded by an attack
 
+Does the type of weapon a terrorist chooses influence how likely they are to be succesful? 
 ```{r}
 #| echo: false
 eda_data |>
@@ -78,45 +194,15 @@ eda_data |>
   facet_wrap(~weaptype1_txt, scales = "free") +
   labs(title = "Success Rate of Terroist Attacks by Weapon Type",
        x = "Weapon Type", y = "Count")+
-  scale_fill_manual(values = c("0" = "hotpink", "1" = "skyblue"),
+  scale_fill_manual(values = c("0" = "darkblue", "1" = "skyblue"),
                        labels = c("Unsuccessful", "Sucessful"))
 ```
+It appears that an attacker's weapon of choice could have a very big impact on whether or not they will be successful. The weapons with the highest rate of success ppear to be attacks using. incendiaries. sabotage equipment, and melee. It is interesting to note that fake weapons has a higer success average than using biological weapons and radiological weapons. This may be due to the difficulty of creating an effective biological/ radiological weapon- advanced science knowledge would be required and resources, such as dangerous viruse and radioactive material, are hard to obtain. 
 
-```{r}
-eda_data <- eda_data |>
-  mutate(year_category = case_when(
-    year >= 1970 & year <= 1979 ~ '1970-1979',
-    year >= 1980 & year <= 1989 ~ '1980-1989',
-    year >= 1990 & year <= 1999 ~ '1990-1999',
-    year >= 2000 & year <= 2009 ~ '2000-2009',
-    year >= 2010 & year <= 2017 ~ '2010-2017'
-  ))
-```
+From this, we can also tell that the most common weapon choice among terrorist attacks are explosives and the least common are radiological. It is interesting to note that explosives have a very high rate of success while radiological weapons have an extremely low rate of success.
 
-```{r}
-eda_data |>
-  mutate(killed_wounded = nkill + nwound) |>
-  ggplot(aes(x = year_category, y = killed_wounded))+
-  geom_boxplot() +
-  coord_flip()
-```
-most terrorist attacks do not kill over 1000 people with a few rare exoections killing over 4000
 
-```{r}
-eda_data |>
-  mutate(killed_wounded = nkill + nwound) |>
-  filter(killed_wounded < 2500) |>
-  ggplot(aes(x = year_category, y = killed_wounded))+
-  geom_boxplot() +
-  coord_flip()
-```
-```{r}
-eda_data |>
-  mutate(killed_wounded = nkill + nwound) |>
-  summarise(avg_kill = mean(nkill, na.rm = TRUE),
-            avg_wound = mean(nwound, na.rm = TRUE),
-            avg_kill_wound = mean(killed_wounded, na.rm = TRUE))
-```
+Do the average amount of people killed and wounded vary among which weapon an attacker chose?
 ```{r}
 eda_data |>
   mutate(killed_wounded = nkill + nwound) |>
@@ -124,8 +210,24 @@ eda_data |>
   summarise(avg_kill = mean(nkill, na.rm = TRUE),
             avg_wound = mean(nwound, na.rm = TRUE),
             avg_kill_wound = mean(killed_wounded, na.rm = TRUE)) |>
-  arrange(desc(avg_kill_wound))
+  arrange(desc(avg_kill_wound)) |>
+  kable("html", booktabs = TRUE) 
 ```
+Grouping by type of weapon used, we can see the  severity of attacks varies greatly. Attack using a vehicle kills and wounds an average of 249 people while using fake weapons kills and wounds an average of 0.031 people. 
 
+
+
+## Progress Summary and Moving Forward
+Regarding data collecting and cleaning, I have cleaned by datasets and joined them into one which I have been using to work on my project.
+For my EDA, I plan to have a basic overview section followed by two in depth explorations and then an findings section to explore some smaller variables I found interesting but couldn't incorporate into my two larger explorations. The two explorations I am including are attack success vs political stability and severity of attacks vs weapon types. For each topic, I will do univariate, bivariate, and multivariate analysises and write a section summary of my findings.
+I have a rough analysis done for my basic overview section, most of my first exploration topic, and some of my second exploration topic. 
+
+I plan to include a multivariate analysis for my second exploration. Some of the relationships I am considering for this exploration are
+- does weapon choice affect total damage (people killed/ wounded, property damage)?
+- is success correlated to how many people are killed/ injured and how does this vary among weapo groups?
+
+Some variables I find interesting but couldnt include in my two explorations are the variables on hostages and what are the most likey groups to be targeted. I may explore these in a smaller section for my own curosity. Questions I have include
+- Does taking hostages increase a terrorist's chance of success?
+- Are attacks targeting public figures/ institutions/ people more successful and how does the choice of weapon differ between these.
 
 
