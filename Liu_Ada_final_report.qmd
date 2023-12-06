@@ -47,7 +47,7 @@ After I combined and cleaned my two raw datasets, the dataset I will be using fo
 
 In order to dive deeper into the relationships between politics and terrorism, it is important to first grasp an idea of the distribution of attacks over time, political regime types, and location.
 
-**Terrorist Attacks over Time**
+#### Terrorist Attacks over Time
 
 In order to understand the distribution of attacks over time, one must under how the frequency of terrorist attacks has changed from 1970 to 2017, which is visualized in the graph below.
 
@@ -55,7 +55,7 @@ In order to understand the distribution of attacks over time, one must under how
 
 Looking at this histogram, the distribution of terrorist attacks over time is skewed to the right, which means terrorist attack have become more common as time passes. It is interesting to note that terrorist attacks seem to have started decreasing after 1990 but increase drastically after 2001. It may be interesting to note that 2001 is when the United States of America launched an initiative called "The Global War on Terror" following the September 11 attacks on the twin towers which continues to this day.
 
-**Terrorist Attacks over Political Regime types**
+#### Terrorist Attacks over Political Regime types
 
 In order to analyze the distribution of attacks over political regime types one must answer if there more attacks if a country has a higher or a lower Polity score. A country's polity score is assigned based on how democratic or autocratic the governing bod is- a 10 means a country is strongly democratic and a -10 means a country is strongly autocratic. The distribution of attacks over Polity score is visualized in the graph below. 
 
@@ -63,7 +63,7 @@ In order to analyze the distribution of attacks over political regime types one 
 
 This bar chart shows that most terrorist attacks do not happen in countries with a very low but instead tend to grow in number, with a sharp increase when the score is 6, following by a gradual decrease. Countries with Polity scores between 6 to 8 have the most terrorist attacks in total. Since very developed countries tend to have a very high polity score and very underdeveloped countries have a low polity score, these countries in the middle may be the ones that have several groups fighting for leadership and that don't have extremely advanced technology to defend themselves against attackers. These may also be the countries that developed countries use to fight proxy wars to protect the safety of those in the homeland. It is also interesting to note that the distribution is skewed to the right, meaning that most terrorist attacks happen in countries that are more democratic than not. Democracies tend to prioritize civil rights and the political freedom and may be more hesitant in suppressing and condemning radical groups. Radical groups may also feel safer conducting attacks in these countries as a means of drawing attention to their concerns while understanding that these countries may be more willing to negotiate for resolution. 
 
-**Terrorist Attacks over Geopolitical Areas**
+#### Terrorist Attacks over Geopolitical Areas
 
 In order to understand the geopolitical distribution of terrorist attacks, one must see where most terrorist attacks occur. The table below shows the count of terrorist attacks within each region of the world. From this table, it is clear that the Middle East and South Asia suffer from the highest amounts of attacks.
 
@@ -71,14 +71,36 @@ In order to understand the geopolitical distribution of terrorist attacks, one m
 
 In order to visualize this distribution, it is useful to consult a map tracking the amount of attacks per country as included below. 
 
-<img src="figures/plot3.png" width="750" height="600">
+<img src="figures/plot3.png" width="700" height="600">
 
-Looking at the number of terrorist attacks by region and by country, it is evident that Middle Eastern countries and South Asian countries have a much higher attacked rate, which is supported by the data from the table. This may be due to the fact that many countries in these areas have unstable political regimes and have several groups fighting for control of the government. It may also be interesting to note that 
-
+Looking at the number of terrorist attacks by region and by country, it is evident that Middle Eastern/ North African countries and South Asian countries have a much higher attacked rate, which is supported by the data from the table. The regions with moderately high attack counts are South America and Sub-Saharan Africa.  This may be due to the fact that many countries in these areas have unstable political regimes and have several groups fighting for control of the government. It is interesting to note that the top four deadliest terrorist groups are located in the two regions that have the most attacks- Islamic State, al-Shbaab, Jamaat Nusrat Al-Islam wal Muslimeen, and the Balochistan Liberation Army, meaning that these regions both launch and suffer the most attacks.
 
 ## Exploring Attack Success vs. Political Stability
 
+The first major research question that drove my EDA was how does the political stability of a country affect how likely a terrorist attack will be successful.
+
+In order to answer this, it is important to define what determines political stability and what determines a success. For this EDA, political stability will be measured by a country's durability and polity scores. Durability will be measured as the number of years since the most recent regime change- defined by a 3 point change in the Polity score over a period of three years or less. A country with a higher durability score and a higher Polity score will be regarded as more politically stable. A successful attack will be defined essentially it is defined as whether or not the attack type took place and is not judged in terms of the larger goals of the terrorists. 
+
+#### Distribution of Successful and Unsuccessful Attacks
+
+Before exploring the relationship between these variables, it is useful to have an understanding of the distribution of successful and unsuccessful attacks, shown in the figure below.
+
+<img src="figures/plot4.png" width="600" height="600">
+
+This bar chart shows that there are many more successful attacks than unsuccesful attacks. This is important to note as it means that countries are unable to counter terrorism to an ideal level and is a finding that needs to be taken seriously. This may be due to terror groups constantly evolving their tactics and taking advantage of technological advancements. Areas with improvements that may provide terrorists with significant advantages include modern communication, transportation, and weaponry. Unfortunately, this may also mean that terrorist attack may become more severe over time which I will touch upon in my second exploration. 
+
+#### Relationship of Success Rate and Political Stability
+
+In order to understand how the political stability of a country is related to the success rates of terrorist attacks within the country, one can compare the mean values of durable and Polity score for successful and unsuccessful attacks. 
+
+This table will give an idea of whether there is a noticeable difference in political stability factors based on the outcome of the attacks
+
+**
+
+
 ## Exploring Severity of Terroist Attacks by Weapon Type
+
+more and more sever over time 
 
 ## Additional Points of Interest
 
@@ -86,3 +108,4 @@ Looking at the number of terrorist attacks by region and by country, it is evide
 
 ## References
 https://www.georgewbushlibrary.gov/research/topic-guides/global-war-terror
+https://www.visionofhumanity.org/global-terrorism-index-2023-key-findings-in-5-charts/

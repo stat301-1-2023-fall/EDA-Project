@@ -53,11 +53,36 @@ plot3<- ggplot(df_mapped, aes(x = long, y = lat, group = group, fill = n)) +
   labs(fill = "Number of Attacks", title = "Frequency of Terrorist Attacks by Country")
 ggsave("figures/plot3.png", plot3)
 
-#polity score by region
+#Basic overview of the distribution of successful and unsuccessful attacks
+plot4<- eda_data |>
+  mutate(success = as.factor(success))|>
+  mutate(success = ifelse(success == 0, "unsuccessful", "successful"))|>
+  ggplot(aes(x = success))+
+  geom_bar(fill = "skyblue")+
+  labs(title = "Count of Successful and Unsuccesful Terrorist Attacks", x = "")
+ggsave("figures/plot4.png", plot4)
 
-eda_data |>
-  mutate(polity = as.integer(polity))
-  group_by(region_txt)|>
-  g
+
+
+
+
+#weaponry
+#Successes and Failures of Terroist Attacks Over Time
+seg_data <- eda_data |>
+  mutate(segment = cut(year, breaks = seq(1969, 2020, by = 5)))
+summary_seg <- seg_data |>
+  group_by(segment) |>
+  summarize(successes = sum(success == 1),
+            failures = sum(success == 0))
+long_seg <- summary_seg |>
+  pivot_longer(cols = c(successes, failures), names_to = "outcome", values_to = "count")
+
+ggplot(long_seg, aes(x = segment, y = count, color = outcome, group = outcome)) +
+  geom_line()+
+  labs(title = "Successes and Failures of Terroist Attacks Over Time", 
+       x = "Time Period")+
+  coord_flip()
+# greater disparty. govt is no tkeeping up w groups. serious. suggests tactics ned to evolve. rig
+#right noe reactionary. should focus on preventon tactics
 
 

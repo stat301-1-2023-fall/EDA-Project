@@ -129,9 +129,10 @@ eda_data |>
   geom_bar(fill = "skyblue")+
   labs(title = "Count of Successful and Unsuccesful Terrorist Attacks")
 ```
-There are many more unsuccessful attacks than there are succesful ones.
+There are many more successful attacks than there are succesful ones.
 
-Comparing the mean values of durable and Polity score for successful and unsuccessful attacks. This will give an idea of whether there is a noticeable difference in political stability factors based on the success of the attacks
+Comparing the mean values of durable and Polity score for successful and unsuccessful attacks. 
+This will give an idea of whether there is a noticeable difference in political stability factors based on the success of the attacks
 ```{r}
 eda_data |>
   filter(polity > -11) |>
@@ -229,15 +230,5 @@ I plan to include a multivariate analysis for my second exploration. Some of the
 Some variables I find interesting but couldnt include in my two explorations are the variables on hostages and what are the most likey groups to be targeted. I may explore these in a smaller section for my own curosity. Questions I have include
 - Does taking hostages increase a terrorist's chance of success?
 - Are attacks targeting public figures/ institutions/ people more successful and how does the choice of weapon differ between these.
-
-```{r}
-library(tidyverse)
-library(knitr)
-library(maps)
-library(purrr)
-install.packages("kableExtra")
-library(kableExtra)
-eda_data <- read_csv("data/eda_data.csv")
-```
 
 
