@@ -97,11 +97,27 @@ In order to understand how the political stability of a country is related to th
 
 The table above gives an idea of whether there is a noticeable difference in political stability factors based on the outcome of the attacks. It is evident that the average durability of a country for an unsuccessful attack is much higher than that for a successful attack. The Polity score is also on average higher. 
 
-In order to visualize this and gain deeper insight on the distribution of the political stability across successful and unsuccessful attacks, one can look at the distribution for the two variables that determine stability.
+In order to visualize this and gain deeper insight on the distribution of the political stability across successful and unsuccessful attacks, one can look at the distribution for the two variables that determine stability against the outcome of attacks.
 
 **Outcome and Durability**
 
+<img src="figures/plot5.png" width="500" height="500">
+
+For attacks that are successful, the average durability of the country is lower for attacks that are unsuccessful. A country is more durable the longer it has been since a regime change which mean more durable countries are likely to have better infrastructure and communication through the country. This means they are better prepared to predict attacks, handle attacks, and send out first responders when needed. There are many outliars, which may seem odd at first. These outliars are countries with a very high durability, which means their government has been in place for a long time. This makes sense as most countries in the world have gone through regime changes and these are when countries are the most vulnerable to attacks. As shown earlier, most attacks take place in areas that have internal fighting and are engaged in war, such as in South Asia and in the Middle East. 
+
 **Outcome and Polity Score**
+
+<img src="figures/plot6.png" width="500" height="500">
+
+From this plot, it is shown that successful attacks occur on average in a country with a lower Polity score. Since countries that have a higher Polity score are more democratic, the policies and authority in these countries tend to focus on protecting the public and civilians more than in autocratic governments. There are several outliars for both outcomes, in the lower direction. This makes sense since we have established that most terrorist attacks occur in countries with a moderately high Polity score. 
+
+### Influence of Duability Score and Polity Score Outcome
+
+After analyzing the distribution of the political stability factors across unsuccessful and successful attacks, it would be interesting to see how a combination of the two variables could influence the rate of success of an attack. The plot below visualizes the predicted probability of success of a terrorist group based on the durability score and Polity score of a country.
+
+<img src="figures/plot7.png" width="600" height="500">
+
+This graph shows that countries that have both a low durability score and a low Polity score- low political stability- have a much higher chance that an attack will be successful. The colors in the graph, denoting probability of success, appear to radiate outwards and has a negative relationship with both factors. This means the more politically stable a country is, the less likely an attack will be successful. However, it is interesting to note that even the countries with the highest political stability have a high probability that an attack is successful- there is no country with a predicted success under 75%. This is concerning as it shows all countries are much more likely to suffer an attack than to prevent one. However, noting the trend where success rates decrease with increases in both factors, governments can aim to either increase their Polity scores or their durability scores and likely be rewarded with a lower success rate.
 
 
 ## Exploring Severity of Terroist Attacks by Weapon Type
