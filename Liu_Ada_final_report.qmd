@@ -122,7 +122,30 @@ This graph shows that countries that have both a low durability score and a low 
 
 ## Exploring Severity of Terroist Attacks by Weapon Type
 
-more and more sever over time 
+The second major research question that drove my EDA is if the type of weapon a terrorist chooses influence how likely they are to be successful. 
+
+In order to answer this question, it is important to define what severity means. For this analysis, severity will be defined as the rate of success, the number of people killed and wounded by an attack, and if there was property damage.
+
+#### Successes Rate of Attacks Over Time
+
+In order to start exploring this relationship, it is important to grasp an understanding of the distribution of the factors that contribute to how severe a terrorist attack is. One such factor is how the success rate of attacks has changed over time, visualized in the figure below.
+
+<img src="figures/plot8.png" width="600" height="500">
+
+From this figure it is evident that throughout time, the success rate has always been higher than the failure rate for attacks, which was touched upon in my previous exploration. However, what is interesting to note here is that while the failure rate has remained relatively stable, with a slight increase in the 21st century, the success rate had been steadily increasing until the late 1990's where it then begins a steady decrease before skyrocketing in the 2000s. This is extremely concerning as it shows that governments are not keeping up with the growth of attacks and the technological advancements employed by terrorists. The steady decrease in the late 1990s may reflect governments taking a more preventative stance on terrorism and learning to manipulate technology to outpace terror groups. The large spike in attacks after 2000 may be part reaction to "The Global War on Terror" and part due to the boom in technology in communication, transporation, and for this exploraton, weaponry.
+
+#### Amount of People Killed and Wounded Among Weapon of Choice
+
+<iframe src="figures/table3.html" style="width:100%; height:350px;"></iframe>
+
+#### Weapon of Choice and Success Rate
+
+<img src="figures/plot9.png" width="600" height="500">
+
+
+#### 
+
+
 
 ## Additional Points of Interest
 
