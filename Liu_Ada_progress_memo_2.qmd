@@ -230,4 +230,14 @@ Some variables I find interesting but couldnt include in my two explorations are
 - Does taking hostages increase a terrorist's chance of success?
 - Are attacks targeting public figures/ institutions/ people more successful and how does the choice of weapon differ between these.
 
+```{r}
+library(tidyverse)
+library(knitr)
+library(maps)
+library(purrr)
+install.packages("kableExtra")
+library(kableExtra)
+eda_data <- read_csv("data/eda_data.csv")
+```
+
 
