@@ -75,7 +75,7 @@ In order to visualize this distribution, it is useful to consult a map tracking 
 
 Looking at the number of terrorist attacks by region and by country, it is evident that Middle Eastern/ North African countries and South Asian countries have a much higher attacked rate, which is supported by the data from the table. The regions with moderately high attack counts are South America and Sub-Saharan Africa.  This may be due to the fact that many countries in these areas have unstable political regimes and have several groups fighting for control of the government. It is interesting to note that the top four deadliest terrorist groups are located in the two regions that have the most attacks- Islamic State, al-Shbaab, Jamaat Nusrat Al-Islam wal Muslimeen, and the Balochistan Liberation Army, meaning that these regions both launch and suffer the most attacks.
 
-## Exploring Attack Success vs. Political Stability
+## Exploring Attack Outcome vs. Political Stability
 
 The first major research question that drove my EDA was how does the political stability of a country affect how likely a terrorist attack will be successful.
 
@@ -89,13 +89,19 @@ Before exploring the relationship between these variables, it is useful to have 
 
 This bar chart shows that there are many more successful attacks than unsuccesful attacks. This is important to note as it means that countries are unable to counter terrorism to an ideal level and is a finding that needs to be taken seriously. This may be due to terror groups constantly evolving their tactics and taking advantage of technological advancements. Areas with improvements that may provide terrorists with significant advantages include modern communication, transportation, and weaponry. Unfortunately, this may also mean that terrorist attack may become more severe over time which I will touch upon in my second exploration. 
 
-#### Relationship of Success Rate and Political Stability
+#### Relationship of Outcome and Political Stability
 
 In order to understand how the political stability of a country is related to the success rates of terrorist attacks within the country, one can compare the mean values of durable and Polity score for successful and unsuccessful attacks. 
 
-This table will give an idea of whether there is a noticeable difference in political stability factors based on the outcome of the attacks
+<iframe src="figures/table2.html" style="width:100%; height:75px;"></iframe>
 
-**
+The table above gives an idea of whether there is a noticeable difference in political stability factors based on the outcome of the attacks. It is evident that the average durability of a country for an unsuccessful attack is much higher than that for a successful attack. The Polity score is also on average higher. 
+
+In order to visualize this and gain deeper insight on the distribution of the political stability across successful and unsuccessful attacks, one can look at the distribution for the two variables that determine stability.
+
+**Outcome and Durability**
+
+**Outcome and Polity Score**
 
 
 ## Exploring Severity of Terroist Attacks by Weapon Type
