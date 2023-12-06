@@ -1,0 +1,84 @@
+---
+title: "The Intersection of Politics and Terror"
+subtitle: |
+  | Understanding the Complexities of Terrorist Attacks and Political Dynamics
+  | Data Science 1 with R (STAT 301-1)
+author: "Ada Liu"
+date: today
+
+format:
+  html:
+    toc: true
+    embed-resources: true
+    
+execute:
+  echo: false
+  warning: false
+
+from: markdown+emoji 
+---
+```{r}
+library(quarto)
+library(knitr)
+```
+::: {.callout-tip icon=false}
+
+## Github Repo Link
+
+[https://github.com/stat301-1-2023-fall/final-project-1-adacliu.git](https://github.com/stat301-1-2023-fall/final-project-1-adacliu.git)
+
+:::
+
+## Introduction
+My EDA will explore how the political environment influences terrorism trends.
+As someone with enlisted friends and family who have worked in defense and for the military, I find this topic very interesting especially during a time when political tensions are extremely high and terrorist threats are a common topic in everyday news broadcasts. Since these two are obviously correlated, I want to analyze how and to what extent they influence each other.
+
+I decided on using the Global Terrorism Database and the Polity IV dataset for my EDA as I found them comprehensive and included a variety of variables. The Global Terrorism Database (GTD) is from Kaggle and is an open source database that has information on terrorist attacks worldwide from 1970 to 2017 and is maintained by the National Consortium for the Study of Terrorism and Responses to Terrorism at The University of Maryland. The Polity IV dataset is typically maintained by the Center for Systemic Peace (CSP). This dataset includes information on the world's political regimes.It assesses aspects like democracy, autocracy, and political stability. It provides numerical scores to categorize political regimes.
+Both of them are maintained by official groups and are backed up by accredited organizations and have been widely used for research and are very comprehensive in their respected topics. These two datasets work well together to analyze the connections between the occurrence of terrorist attacks, weaponry, and different political regimes.
+
+Some of the initial research questions revolved around political stability, weaponry, and the severity of attacks. I wondered how they were related and wondered how terms like "political stability" and "severity" could be formally defined and approached in a technical sense. Some specific questions were "How does the political stability of a country affect how likely a terrorist attack will be successful?" and "Does the type of weapon a terrorist chooses influence how likely they are to be succesful?" both of which I will explore in my EDA.
+
+## Data overview & quality
+
+The GTD dataset has 135 variables with 181,691 observations. There are 55 categorical variables and 75 numeric variables.The Polity dataset has 37 variables and 17,574 observations. There are 2 categorical variables and 35 numeric variables.
+
+The first concern I had was that the Polity dataset was downloaded as a .sav file, which I ended up importing using the haven package. I did my data cleaning which included removing variables from both datasets that had significant missingness issue, in my case, over 50% missing. Since the earliest entry in the Polity dataset was 1776 and the latest entry in the GTD was 2017, I dropped any entries prior to 1776 from the GTD dataset and any entries after 2017 in the Polity dataset. I used the compound key "country_name" and "year" from the Polity dataset to join the two datasets and then cleaned up this new, combined dataset by removing any variables that I was not interested in working with and changed unknown values to "NA". This addressed my main concern of having too many variables and observations to work with. 
+
+After I combined and cleaned my two raw datasets, the dataset I will be using for my EDA has 43 variables and very little missingness issues. This will prevent misrepresentations in my EDA and avoid any issues that arise with missing values. There are 11 categorical variables and 30 numerical variables with 175,790 observations. 
+
+## General Overview of the Distribution of Terroist Attacks
+
+In order to dive deeper into the relationships between politics and terrorism, it is important to first grasp an idea of the distribution of attacks over time, political regime types, and location.
+
+**Terrorist Attacks over Time**
+
+In order to understand the distribution of attacks over time, one must under how the frequency of terrorist attacks has changed from 1970 to 2017, which is visualized in the graph below.
+```{r}
+knitr::include_graphics("figures/plot1.png")
+```
+Looking at this histogram, the distribution of terrorist attacks over time is skewed to the right, which means terrorist attack have become more common as time passes. It is interesting to note that terrorist attacks seem to have started decreasing after 1990 but increase drastically after 2001. It may be interesting to note that 2001 is when the United States of America launched an initiative called "The Global War on Terror" following the September 11 attacks on the twin towers which continues to this day.
+
+**Terrorist Attacks over Political Regime types**
+
+In order to analyze the distribution of attacks over political regime types one must answer if there more attacks if a country has a higher or a lower Polity score. A country's polity score is assigned based on how democratic or autocratic the governing bod is- a 10 means a country is strongly democratic and a -10 means a country is strongly autocratic. The distribution of attacks over Polity score is visualized in the graph below. 
+```{r}
+knitr::include_graphics("figures/plot2.png")
+```
+This bar chart shows that most terrorist attacks do not happen in countries with a very low but instead tend to grow in number, with a sharp increase when the score is 6, following by a gradual decrease. Countries with Polity scores between 6 to 8 have the most terrorist attacks in total. Since very developed countries tend to have a very high polity score and very underdeveloped countries have a low polity score, these countries in the middle may be the ones that have several groups fighting for leadership and that don't have extremely advanced technology to defend themselves against attackers. These may also be the countries that developed countries use to fight proxy wars to protect the safety of those in the homeland. It is also interesting to note that the distribution is skewed to the right, meaning that most terrorist attacks happen in countries that are more democratic than not. Democracies tend to prioritize civil rights and the political freedom and may be more hesitant in suppressing and condemning radical groups. Radical groups may also feel safer conducting attacks in these countries as a means of drawing attention to their concerns while understanding that these countries may be more willing to negotiate for resolution. 
+
+**Terrorist Attacks by Country**
+
+<iframe src="figures/table1.html" style="width:100%; height:400px;"></iframe>
+
+
+
+## Exploring Attack Success vs. Political Stability
+
+## Exploring Severity of Terroist Attacks by Weapon Type
+
+## Additional Points of Interest
+
+## Conclusion
+
+## References
+https://www.georgewbushlibrary.gov/research/topic-guides/global-war-terror

@@ -65,7 +65,7 @@ combined_data <- combined_data |>
          -eventid, -cyear, -country.x, -ccode, -scode, , -latitude, -longitude, -vicinity,
          -dbsource,  -scite1, -specificity, -weapsubtype1_txt,-weapdetail, -summary, 
          -nkillter, -nkillus, -nwoundus, -nwoundte, -claimed, -corp1,
-         -nperps,-nperpcap, -INT_MISC, -INT_ANY, -INT_LOG, - INT_IDEO -p5, -flag, -polity2)
+         -nperps,-nperpcap, -INT_MISC, -INT_ANY, -INT_IDEO, -INT_LOG, -p5, -flag, -polity2)
 
 #creating a dataset that is text based
 combined_data <- combined_data |>

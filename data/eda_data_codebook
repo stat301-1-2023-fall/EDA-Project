@@ -129,7 +129,7 @@ Competitiveness of Participation (PARCOMP):
 (2) Suppressed +1
 
 polity - The POLITY score is computed by subtracting the AUTOC score from the
-DEMOC score; the resulting unified polity scale ranges from +10 (strongly democratic) to !10
+DEMOC score; the resulting unified polity scale ranges from +10 (strongly democratic) to -10
 (strongly autocratic). 
 
 durable - Regime Durability: The number of years since the most recent regime change (defined by a three- point change in the POLITY score over a period of three years or less) or the end of transition period defined by the lack of stable political institutions (denoted by a standardized authority score).
