@@ -124,7 +124,7 @@ This graph shows that countries that have both a low durability score and a low 
 
 The second major research question that drove my EDA is if the type of weapon a terrorist chooses influence how likely they are to be successful. 
 
-In order to answer this question, it is important to define what severity means. For this analysis, severity will be defined as the rate of success, the number of people killed and wounded by an attack, and if there was property damage.
+In order to answer this question, it is important to define what severity means. For this analysis, severity will be defined as the rate of success and the number of people killed and wounded by an attack, or number of casualties.
 
 #### Successes Rate of Attacks Over Time
 
@@ -154,10 +154,6 @@ The figure below shows the success rate of terrorist attacks by what weapon was 
 From this figure, it appears that an attacker's weapon of choice could have a very big impact on whether or not they will be successful. The weapons with the highest rate of success appear to be attacks using incendiaries. sabotage equipment, and melee. It is interesting to note that fake weapons has a higher success average than using biological weapons and radiological weapons. This may be due to the difficulty of creating an effective biological/ radiological weapon- advanced science knowledge would be required and resources, such as dangerous viruses and radioactive material, are difficult to obtain. These materials are also carefully tracked by governments and the labs that work with them, meaning these attacks are likely to be twharted before the attacker can carry them out. Their rarity appears to be reflected in how often they are used- these two weapon types are the least common choices of weaponry.
 
 From this, we can also tell that the most common weapon choice among terrorist attacks are explosives and the least common are radiological. It also is interesting to note that explosives have a very high rate of success while radiological weapons have an extremely low rate of success, which may be behind why.
-
-
-#### 
-severe and success rate 
 
 
 ## Additional Points of Interest
