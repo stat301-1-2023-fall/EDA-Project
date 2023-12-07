@@ -1,0 +1,51 @@
+---
+title: "The Intersection of Politics and Terror"
+subtitle: |
+  | Executive Summary
+  | Data Science 1 with R (STAT 301-1)
+author: "Ada Liu"
+date: today
+
+format:
+  html:
+    toc: true
+    embed-resources: true
+    
+execute:
+  echo: false
+  warning: false
+
+from: markdown+emoji 
+---
+
+::: {.callout-tip icon=false}
+
+## Github Repo Link
+
+[https://github.com/stat301-1-2023-fall/final-project-1-adacliu.git](https://github.com/stat301-1-2023-fall/final-project-1-adacliu.git)
+
+:::
+
+## Purpose of my EDA
+
+Through using the Global Terrorism Database (GTD), a database that has information on terrorist attacks worldwide, and the Polity IV database which includes information on the world’s political regimes- it assesses aspects like democracy, autocracy, and political stability. I explore how the political environment influences trends in terrorism in my EDA, focusing on attack outcome is related to political stability and how the severity of an attack is related to the weapon used. 
+
+## Distribution of Terroist Attacks
+
+First, I provide a general overview on the distribution of attacks over time, political regime, and location. I found that the distribution of terrorist attacks over time is skewed to the right, which means terrorist attack have become more common as time passes and has been significantly increasing. In regards to attacks over poltical regimes, I found that most attacks happen in countries with a moderate to moderate- high Polity score which is a measure of how democratic a country is. Geopoliically, the Middle East, North Africa, and South Asia experience the greatest amount of attacks.
+
+## Attack Outcome vs. Political Stability
+
+My first exploration is on how the political stability of a country affect how likely a terrorist attack will be successful. I found that there are many more successful attacks than unsuccesful attacks. Further, I found that the average durability of a country for an unsuccessful attack is much higher than that for a successful attack and the same applies for a the Polity score is also on average higher. Finally, I found that countries that have both a low durability score and a low Polity score- low political stability- have a much higher chance that an attack will be successful. It is interesting to note that no matter what, no combination has a predicted success rate of under 70%.
+
+## Severity of Terroist Attacks by Weapon Type
+
+My second exploration concerns how the severity of terrorist attacks varies with what weapon the terrorist chooses to use. I first found that throughout time, the success rate has always been higher than the failure rate for attacks. However, while the failure rate has remained relatively stable, with a slight increase in the 21st century, the success rate had been steadily increasing until the late 1990’s where it then begins a steady decrease before skyrocketing in the 2000s. Further, I found that the severity of attacks vary greatly among which weapon was used with attacks using vehicles causing the most casualties and attacks with fake weapons causing the least. It is interesting to note that the four weapon choices that cause the most severe attacks wound on average much more people than they kill. Finally, in this section, I discovered that an attacker’s weapon of choice could have a very big impact on whether or not they will be successful. The weapons with the highest rate of success appear to be attacks using incendiaries. sabotage equipment, and melee. I also found out that that the most common weapon choice among terrorist attacks are explosives and the least common are radiological. 
+
+## Additional Points of Interest
+
+I also explored the trend of taking hostages throughout time and analyszed why such a pattern existed out of curiosity. I found that taking hostages has been an increasing trend and have recently ekyrocketed. I attributed this to attacks involving hostages being more successful which was supported by calculations showing that attacks involving hostages, on average, had a much higher success rate than those that did not.
+
+# Conclusion 
+
+In my conclusion, I review the major points and analysis of mine- the "why" behind the results I found and touch upon what the next steps could be and what questions doing this EDA has raised. Overall, most of the results I obtained fell in line with my expections but some did surprise me greatly. The biggest takeaway I took from this EDA was the shock regarding how many more and how much more successful attackers are now- in most areas, governments and the welfare of the people tend to only increase. It surprises me that even though governments are always the ones with the access to the most advanced technology and manpower, that terrorists have been able to not only adapt but also excel in what they do.
