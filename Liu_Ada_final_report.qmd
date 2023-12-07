@@ -158,6 +158,26 @@ From this, we can also tell that the most common weapon choice among terrorist a
 
 ## Additional Points of Interest
 
+#### How Hostages can Affect a Terror Attack
+
+Some other areas that interested me during my analysis were how taking hostages could affect the outcome of a terrorist attack and how the act of taking hostages has evolved throughout the years.
+
+**Hostage Taking Through Time**
+
+In order to analyze this topic, it is important to get a visual of the distribution of attacks involving hostages over time, which is shown on the graph below.
+
+<img src="figures/plot10.png" width="600" height="500">
+
+From this graph, it is evident that the taking os hostages is becoming more and more popular, with a large increase in incidents following 2018. It is interesting to note that prior to 2018, there had been positive, but steady and slow growth in such incidents. This may imply that terror groups discovered around that time that taking hostages would greatly benefit their causes.
+
+**Outcome of Attacks Where Hostages Were Taken**
+
+After observing an increasing trend of taking hostages in attacks, I began to wonder why this pattern was increasing so steadily as it seems like this would require a considerate amount of effort and resources on the terrorist's behalf. Below is a table that shows how the average outcome differs between attacks that take hostages and attacks that do not.
+
+<iframe src="figures/table4.html" style="width:100%; height:100px;"></iframe>
+
+The data in this table shows that events where hostages were taken had a significantly higher success rate, which supports the idea that taking hostages benefits terror groups. Countries are known to be protective of their citizens so this conclusion is reasonable as hostages can be used a negotiation tools and for extortion. This trend, however, is concerning, and governments should take these findings as motivation to increase negotiation training and conflict defusion.
+
 ## Conclusion
 
 ## References
