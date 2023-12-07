@@ -218,6 +218,7 @@ Grouping by type of weapon used, we can see the  severity of attacks varies grea
 
 
 
+
 ## Progress Summary and Moving Forward
 Regarding data collecting and cleaning, I have cleaned by datasets and joined them into one which I have been using to work on my project.
 For my EDA, I plan to have a basic overview section followed by two in depth explorations and then an findings section to explore some smaller variables I found interesting but couldn't incorporate into my two larger explorations. The two explorations I am including are attack success vs political stability and severity of attacks vs weapon types. For each topic, I will do univariate, bivariate, and multivariate analysises and write a section summary of my findings.
@@ -230,5 +231,17 @@ I plan to include a multivariate analysis for my second exploration. Some of the
 Some variables I find interesting but couldnt include in my two explorations are the variables on hostages and what are the most likey groups to be targeted. I may explore these in a smaller section for my own curosity. Questions I have include
 - Does taking hostages increase a terrorist's chance of success?
 - Are attacks targeting public figures/ institutions/ people more successful and how does the choice of weapon differ between these.
+
+```
+
+
+
+
+
+
+
+
+
+
 
 

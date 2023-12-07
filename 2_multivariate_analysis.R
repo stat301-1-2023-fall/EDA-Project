@@ -44,6 +44,25 @@ eda_data |>
 #It appears that an attacker's weapon of choice could have a very big impact on whether or not they will be successful. The weapons with the highest rate of success ppear to be attacks using. incendiaries. sabotage equipment, and melee. It is interesting to note that fake weapons has a higer success average than using biological weapons and radiological weapons. This may be due to the difficulty of creating an effective biological/ radiological weapon- advanced science knowledge would be required and resources, such as dangerous viruse and radioactive material, are hard to obtain. 
 #From this, we can also tell that the most common weapon choice among terrorist attacks are explosives and the least common are radiological. It is interesting to note that explosives have a very high rate of success while radiological weapons have an extremely low rate of success.
 
+#hostage attacks over time
+plot10<- eda_data |>
+  group_by(year)|>
+  summarize(hostage = sum(ishostkid, na.rm = TRUE)) |>
+  ggplot(aes(x = year, y = hostage))+
+  geom_point()+
+  labs(title = "Distribution of the Number of Terror Attacks Involving Hostages", 
+       x = "Year", y = "Number of Attacks Involving Hostages")
+ggsave("figures/plot10.png", plot10)
+
+#hostages table
+table4 <- eda_data |>
+  filter(!is.na(ishostkid))|>
+  mutate(ishostkid = ifelse(ishostkid == 0, "no hostages", "hostages")) |>
+  mutate(hostage = as.factor(ishostkid))|>
+  group_by(hostage) |>
+  summarize(success_rate = mean(success, na.rm = TRUE)) |>
+  kable("html", booktabs = TRUE) 
+writeLines(table4, file.path("figures", "table4.html"))
 
 
 

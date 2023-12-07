@@ -157,9 +157,25 @@ plot9 <- eda_data |>
                     labels = c("Unsuccessful", "Sucessful"))
 ggsave("figures/plot9.png", plot9)
 
+#hostage attacks over time
+plot10<- eda_data |>
+  group_by(year)|>
+  summarize(hostage = sum(ishostkid, na.rm = TRUE)) |>
+  ggplot(aes(x = year, y = hostage))+
+  geom_point()+
+  labs(title = "Distribution of the Number of Terror Attacks Involving Hostages", 
+       x = "Year", y = "Number of Attacks Involving Hostages")
+ggsave("figures/plot10.png", plot10)
 
-
-
+#hostages table
+table4 <- eda_data |>
+  filter(!is.na(ishostkid))|>
+  mutate(ishostkid = ifelse(ishostkid == 0, "no hostages", "hostages")) |>
+  mutate(hostage = as.factor(ishostkid))|>
+  group_by(hostage) |>
+  summarize(success_rate = mean(success, na.rm = TRUE)) |>
+  kable("html", booktabs = TRUE) 
+writeLines(table4, file.path("figures", "table4.html"))
 
 
 
